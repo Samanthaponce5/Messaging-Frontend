@@ -8,7 +8,7 @@ import React from 'react'
 import './Chat.css'
 import SelectInput from '@material-ui/core/Select/SelectInput'
 
-function Chat(){
+function Chat({messages}){
 
     return <div className='chat'>
         <div className='chat__header'>
@@ -33,25 +33,14 @@ function Chat(){
         </div>
 
         <div className='chat__body'>
-            <p className='chat__message'>
-                <span className='chat__name'>Sam</span>
-                This is a msg
-                <span className='chat__timestamp'>{new Date().toUTCString()}</span>
+            {messages.map((message)=>(
+                <p className={`chat__message ${message.received && 'chat__reciever'}`}>
+                <span className='chat__name'>{message.name}</span>
+                {message.message}
+                <span className='chat__timestamp'>{message.timestamp}</span>
             </p>
-
-
-            <p className='chat__message chat__reciever'>
-                <span className='chat__name'>Sam</span>
-                This is a msg
-                <span className='chat__timestamp'>{new Date().toUTCString()}</span>
-            </p>
-
-
-            <p className='chat__message'>
-                <span className='chat__name'>Sam</span>
-                This is a msg
-                <span className='chat__timestamp'>{new Date().toUTCString()}</span>
-            </p>
+            ))}
+            
         </div>
 
         <div className='chat__footer'>
